@@ -44,6 +44,8 @@ app.put('/notes/:id', requireAuth, updateNote)
 app.delete('/notes/:id', requireAuth, deleteNote)
 
 // Start server
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, "0.0.0.0", () => {
     console.log(`Server Started on ${process.env.PORT}`)
 });
+
+
