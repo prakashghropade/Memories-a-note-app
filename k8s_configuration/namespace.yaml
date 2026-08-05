@@ -1,0 +1,6 @@
+kind:  Namespace
+apiVersion: v1
+metadata:
+  name: memories-notes-app-namespace
+  labels:
+    app: memories-notes-app

@@ -15,10 +15,14 @@ function ContactUs() {
     const { isDarkMode } = useTheme();
     const formRef = useRef();
 
+    const emailjsPublicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+    const emailjsServiceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const emailjsTemplateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+
     const sendEmail = async (values) => {
       try {
           const promise = toast.promise(
-              emailjs.send('service_bfw2dei', 'template_1dfl2qi', values, 'C5GQkC8rOL0eONf2-'),
+              emailjs.send(emailjsServiceId, emailjsTemplateId, values, emailjsPublicKey),
               {
                   loading: 'Sending your message...', // Pending message
                   success: 'Message sent successfully!', // Success message
@@ -76,7 +80,7 @@ function ContactUs() {
     });
 
     return () => mm.revert(); // Cleanup matchMedia listeners on component unmount
-}, []);
+}, []); 
 
     return (
         <div className='bg-gray-50 dark:bg-[#090909] min-h-[95vh] w-full sm:min-h-screen lg:px-19 sm:px-10 px-2'>
