@@ -14,7 +14,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-RUN npm install --omit=dev
+RUN npm install
 
 COPY --from=build /app .
 
