@@ -14,8 +14,6 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-RUN npm install
-
 COPY --from=build /app .
 
 EXPOSE 3001
