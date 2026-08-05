@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: emailjs-config
+  name: frontend-config
 data:
   REACT_APP_EMAILJS_PUBLIC_KEY: "UXdhGRHUpXExHDUQm"
   REACT_APP_EMAILJS_SERVICE_ID: "service_2w1v46i"
