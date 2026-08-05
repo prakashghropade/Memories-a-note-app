@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: frontend-config
+  namespace: memories-notes-app-namespace
 data:
   REACT_APP_EMAILJS_PUBLIC_KEY: "UXdhGRHUpXExHDUQm"
   REACT_APP_EMAILJS_SERVICE_ID: "service_2w1v46i"
