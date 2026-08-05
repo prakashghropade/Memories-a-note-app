@@ -9,26 +9,26 @@ spec:
   selector:
     matchLabels:
       app: backend
-    template:
-      metadata:
-        labels:
-          app: backend
-      spec:
-        containers:
-        - name: backend
-          image: prakashghorpade2001/memories-notes-app-backend:v1.0.0
-          ports:
-          - containerPort: 3001
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: prakashghorpade2001/memories-notes-app-backend:v1.0.0
+        ports:
+        - containerPort: 3001
 
-          envFrom:
-          - configMapRef:
-              name: backend-config
+        envFrom:
+        - configMapRef:
+            name: backend-config
 
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
 
