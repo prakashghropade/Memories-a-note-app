@@ -1,0 +1,19 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mongodb-pv
+  namespace: memories-notes-app-namespace
+spec:
+  capacity:
+    storage: 1Gi
+  
+  accessModes:
+    - ReadWriteOnece
+
+  storageClassName: manual
+  
+  persistentVolumeReclaimPolicy:  Retain
+
+  hostPath:
+    path: /mnt/mongodb-data
+

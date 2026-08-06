@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+  namespace: memories-notes-app-namespace
+spec:
+  accessModes:
+    - ReadWriteOnce
+  
+  storageClassName: manual
+
+  resources:
+    requests:
+      storage: 1Gi
