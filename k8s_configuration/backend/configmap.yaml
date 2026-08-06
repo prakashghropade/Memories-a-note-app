@@ -4,7 +4,7 @@ metadata:
   name: backend-config
   namespace: memories-notes-app-namespace
 data:
-  PORT: "3100"
+  PORT: "3001"
   DB_URL: mongodb+srv://padil2246:Adil%400710@cluster0.qd8vyp4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
   SECRET: aw94jr4fy45fa64waf54h5
   EMAIL_USER: prakashghorpade2001@gmail.com
