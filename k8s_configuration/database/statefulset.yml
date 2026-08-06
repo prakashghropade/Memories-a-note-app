@@ -42,5 +42,4 @@ spec:
       - name: mongodb-storage
         persistentVolumeClaim:
           claimName: mongodb-pvc
-       
   
