@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: memories-notes-app-project
+  namespace: argocd
+spec:
+  description: Project for the Memories Notes App
+  sourceRepos:
+    - https://github.com/prakashghropade/Memories-a-note-app.git
+  destinations:
+    - namespace: memories-notes-app-namespace
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - name: admin
+      description: Admin role with full access
+      policies:
+        - p, proj:memories-notes-app-project:admin, applications, *, memories-notes-app-namespace/*, allow
+        - p, proj:memories-notes-app-project:admin, clusters, *, *, allow
+        - p, proj:memories-notes-app-project:admin, repositories, *, *, allow
+  
+  

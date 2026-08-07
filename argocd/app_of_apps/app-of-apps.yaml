@@ -1,0 +1,27 @@
+apiVersion:  argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-app
+  namespace: argocd
+spec:
+  project: memories-notes-app-project
+  source:
+    repoURL:
+      repoURL: https://github.com/prakashghropade/Memories-a-note-app.git
+      targetRevision: main
+      path: argocd/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+    

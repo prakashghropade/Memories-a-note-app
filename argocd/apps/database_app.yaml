@@ -1,0 +1,32 @@
+apiVersion:  argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: database-app
+  namespace: argocd
+spec:
+  project: memories-notes-app-project
+  source:
+    repoURL:
+    targetRevision: main
+    path: k8s_configuration/database
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: memories-notes-app-namespace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+    
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
