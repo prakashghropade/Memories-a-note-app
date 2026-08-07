@@ -6,7 +6,7 @@ metadata:
 spec:
   project: memories-notes-app-project
   source:
-    repoURL:
+    repoURL: https://github.com/prakashghropade/Memories-a-note-app.git
     targetRevision: main
     path: k8s_configuration/database
   destination:

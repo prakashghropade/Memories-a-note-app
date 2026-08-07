@@ -11,7 +11,7 @@ spec:
     path: argocd/apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: memories-notes-app-namespace
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
