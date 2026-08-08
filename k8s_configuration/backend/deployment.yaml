@@ -56,7 +56,7 @@ spec:
           timeoutSeconds: 5
           failureThreshold: 3
         
-        redinessProbe:
+        readinessProbe:
           httpGet:
             path: /
             port: 3001
