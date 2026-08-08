@@ -94,49 +94,38 @@ pipeline {
 
     }
     
-    post {
-        success {
-            echo "Docker images built and pushed successfully!"
-            
-            emailext(
-                subject: "CI Pipeline SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                CI Pipeline completed successfully.
+post {
+    success {
+        emailext(
+            subject: "CI SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: """
+CI Pipeline completed successfully.
 
-                Job: ${env.JOB_NAME}
-                Build: ${env.BUILD_NUMBER}
-                Status: SUCCESS
-                Build URL: ${env.BUILD_URL} 
-                """,
-
-                to: "prakashghorpade901@gmail.com"
-            )
-
-             }
-        
-        failure {
-            echo "Pipeline Failed"
-
-            emailext(
-                subject: "CI Pipeline FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                CI Pipeline failed.
-
-                Job: ${env.JOB_NUMBER},
-                Build: ${env.BUILD_NUMBER},
-                Status: FAILED,
-                Build URL: ${env.BUILD_URL}
-                """,
-
-                to "prakashghorpade901@gmail.com"
-            )
-        }
-        
-        always {
-            sh 'docker image prune -f || true'
-        }
-        
+Job: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Status: SUCCESS
+Build URL: ${env.BUILD_URL}
+Git Commit: ${env.GIT_COMMIT}
+""",
+            to: "prakashghorpade901@gmail.com"
+        )
     }
-    
+
+    failure {
+        emailext(
+            subject: "CI FAILED - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: """
+CI Pipeline failed.
+
+Job: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Status: FAILURE
+Build URL: ${env.BUILD_URL}
+Git Commit: ${env.GIT_COMMIT}
+""",
+            to: "prakashghorpade901@gmail.com"
+        )
+    }
+}
     
 }
