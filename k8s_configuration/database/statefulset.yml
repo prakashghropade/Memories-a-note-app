@@ -4,6 +4,8 @@ kind: StatefulSet
 metadata:
   name: mongodb-statefulset
   namespace: memories-notes-app-namespace
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 
 spec:
   replicas: 1
