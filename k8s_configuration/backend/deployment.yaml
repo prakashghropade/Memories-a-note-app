@@ -23,7 +23,7 @@ spec:
             - sh
             -  -c
             - |
-              until mongosh --host mongodb-service --eval "db.adminCommand('ping')" --quite; do
+              until mongosh "mongodb://admin:admin123@mongodb-service:27017/admin" --authenticationDatabase admin --eval 'db.adminCommand("ping")' --quiet; do
                 echo "Waiting for MongoDB..."
                 sleep 5
               done
