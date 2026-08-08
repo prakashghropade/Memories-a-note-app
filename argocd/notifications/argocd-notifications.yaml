@@ -12,7 +12,7 @@ data:
     username: $email-username
     password: $email-password
     host: $email-host
-    port: $email-port
+    port: 465
     from: $email-username
 
   template.email-health-degraded: |
