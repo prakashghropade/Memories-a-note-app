@@ -6,6 +6,8 @@ metadata:
   annotations:
     notifications.argoproj.io/subscribe.on-health-degraded.email: "prakashghorpade901@gmail.com"
     notifications.argoproj.io/subscribe.on-deployed.email: "prakashghorpade901@gmail.com"
+    notifications.argoproj.io/subscribe.on-sync-succeeded.email: "prakashghorpade901@gmail.com"
+
 spec:
   project: memories-notes-app-project
   source:
