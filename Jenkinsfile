@@ -96,7 +96,7 @@ pipeline {
     
 post {
     success {
-        emailext(
+        mail(
             subject: "CI SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
             body: """
                     CI Pipeline completed successfully.
@@ -111,7 +111,7 @@ post {
     }
 
     failure {
-        emailext(
+        mail(
             subject: "CI FAILED - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
             body: """
                     CI Pipeline failed.
@@ -125,5 +125,6 @@ post {
             )
         }
     }
-    
+
+
 }
