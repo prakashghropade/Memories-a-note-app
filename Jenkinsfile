@@ -88,24 +88,24 @@ pipeline {
 
                 docker logout
             '''
+            }
         }
     }
-}
 
-    }
+}
     
 post {
     success {
         emailext(
             subject: "CI SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
             body: """
-CI Pipeline completed successfully.
+                    CI Pipeline completed successfully.
 
-Job: ${env.JOB_NAME}
-Build: ${env.BUILD_NUMBER}
-Status: SUCCESS
-Build URL: ${env.BUILD_URL}
-""",
+                    Job: ${env.JOB_NAME}    
+                    Build: ${env.BUILD_NUMBER}
+                    Status: SUCCESS
+                    Build URL: ${env.BUILD_URL}
+                    """,
             to: "prakashghorpade901@gmail.com"
         )
     }
@@ -114,16 +114,16 @@ Build URL: ${env.BUILD_URL}
         emailext(
             subject: "CI FAILED - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
             body: """
-CI Pipeline failed.
+                    CI Pipeline failed.
 
-Job: ${env.JOB_NAME}
-Build: ${env.BUILD_NUMBER}
-Status: FAILURE
-Build URL: ${env.BUILD_URL}
-""",
+                    Job: ${env.JOB_NAME}    
+                    Build: ${env.BUILD_NUMBER}
+                    Status: FAILURE
+                    Build URL: ${env.BUILD_URL}
+                """,
             to: "prakashghorpade901@gmail.com"
-        )
+            )
+        }
     }
-}
     
 }
