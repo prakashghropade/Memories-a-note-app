@@ -46,7 +46,7 @@ data:
       send:
         - email-health-degraded
 
-  trigger.on-deployed: |
-    - when: app.status.operationState.phase == 'Succeeded' and app.status.health.status == 'Healthy'
-      send:
-        - email-application-deployed
+  trigger.on-sync-succeeded: |
+    - when: app.status.operationState != nil and app.status.operationState.phase == 'Succeeded'
+    send:
+      - email-application-deployed
