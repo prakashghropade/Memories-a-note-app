@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   
-  storageClassName: manual
+  storageClassName: ""
 
   resources:
     requests:
