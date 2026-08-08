@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: prakashghorpade2001/memories-notes-app-frontend:v1.0.2
+        image: prakashghorpade2001/memories-notes-app-frontend:v1.0.8
         ports:
         - containerPort: 3000
 
