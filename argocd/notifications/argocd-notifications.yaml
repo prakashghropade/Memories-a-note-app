@@ -43,10 +43,10 @@ data:
 
   trigger.on-deployed: |
     - when: app.status.operationState != nil and app.status.operationState.phase == 'Succeeded' and app.status.health.status == 'Healthy'
-    send:
-      - email-application-deployed
+      send:
+        - email-application-deployed
 
   trigger.on-health-degraded: |
     - when: app.status.health.status == 'Degraded'
-    send:
-      - email-health-degraded
+      send:
+        - email-health-degraded
