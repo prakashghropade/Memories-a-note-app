@@ -41,12 +41,12 @@ data:
       Finished at: {{if .app.status.operationState}}{{.app.status.operationState.finishedAt}}{{end}}
       Details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}
 
+  trigger.on-deployed: |
+    - when: app.status.operationState != nil and app.status.operationState.phase == 'Succeeded' and app.status.health.status == 'Healthy'
+    send:
+      - email-application-deployed
+
   trigger.on-health-degraded: |
     - when: app.status.health.status == 'Degraded'
-      send:
-        - email-health-degraded
-
-  trigger.on-deployed: |
-    - app.status.operationState != nil and app.status.operationState.phase == 'Succeeded'
-      send:
-        - email-application-deployed
+    send:
+      - email-health-degraded
