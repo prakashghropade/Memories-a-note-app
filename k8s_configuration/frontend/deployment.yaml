@@ -22,7 +22,7 @@ spec:
             - sh
             - -c
             - |
-              until wegt -q --spider http://backend-service:3001/ ; do
+              until wget -q --spider http://backend-service:3001/ ; do
               echo "Waiting for Backend..."
               sleep 5
               done
