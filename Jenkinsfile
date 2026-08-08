@@ -102,10 +102,9 @@ post {
 CI Pipeline completed successfully.
 
 Job: ${env.JOB_NAME}
-Build Number: ${env.BUILD_NUMBER}
+Build: ${env.BUILD_NUMBER}
 Status: SUCCESS
 Build URL: ${env.BUILD_URL}
-Git Commit: ${env.GIT_COMMIT}
 """,
             to: "prakashghorpade901@gmail.com"
         )
@@ -118,10 +117,9 @@ Git Commit: ${env.GIT_COMMIT}
 CI Pipeline failed.
 
 Job: ${env.JOB_NAME}
-Build Number: ${env.BUILD_NUMBER}
+Build: ${env.BUILD_NUMBER}
 Status: FAILURE
 Build URL: ${env.BUILD_URL}
-Git Commit: ${env.GIT_COMMIT}
 """,
             to: "prakashghorpade901@gmail.com"
         )
