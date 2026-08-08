@@ -15,6 +15,20 @@ spec:
       labels:
         app: backend
     spec:
+      
+      initContainers:
+        - name: wait-for-mongodb
+          image: mongo:8.0.4
+          command:
+            - sh
+            -  -c
+            - |
+              until mongosh --host mongodb-service --eval "db.adminCommand('ping')" --quite; do
+                echo "Waiting for MongoDB..."
+                sleep 5
+              done
+              echo "MongoDB is ready"
+
       containers:
       - name: backend
         image: prakashghorpade2001/memories-notes-app-backend:v1.0.8
@@ -32,4 +46,31 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
+        
+        startupProbe:
+          httpGet:
+            path: /
+            port: 3001
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        
+        redinessProbe:
+          httpGet:
+            path: /
+            port: 3001
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 3
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3001
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
 

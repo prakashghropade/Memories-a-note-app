@@ -40,6 +40,39 @@ spec:
                   name: mongodb-secret
                   key: password
 
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          
+          startupProbe:
+            exec:
+              command:
+                - mongosh
+                - --eval
+                - "db.adminCommand('ping')"
+            failureThreshold: 30
+            periodSeconds: 10
+
+          readinessProbe:
+            exec:
+              command:
+                - mongosh
+                - --eval
+                - "db.adminCommand('ping')"
+            periodSeconds: 10
+
+          livenessProbe:
+            exec:
+              command:
+                - mongosh
+                - --eval
+                - "db.adminCommand('ping')"
+            periodSeconds: 10
+
           volumeMounts:
             - name: mongodb-storage
               mountPath: /data/db

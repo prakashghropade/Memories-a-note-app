@@ -15,6 +15,19 @@ spec:
       labels:
         app: frontend
     spec:
+      initContainers:
+        - name: wait-for-backend
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              until wegt -q --spider http://backend-service:3001/ ; do
+              echo "Waiting for Backend..."
+              sleep 5
+              done
+              echo "Backend is ready!"
+
       containers:
       - name: frontend
         image: prakashghorpade2001/memories-notes-app-frontend:v1.0.8
