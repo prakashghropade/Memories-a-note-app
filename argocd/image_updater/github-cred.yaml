@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-image-updater-git-creds
+  namespace: argocd
+stringData:
+  username: "<github-username>"
+  password: "<personal-access-token>"
