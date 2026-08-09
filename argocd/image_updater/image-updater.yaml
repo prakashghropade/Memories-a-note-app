@@ -1,0 +1,21 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: memories-notes-image-updater
+  namespace: argocd
+
+spec:
+  applicationRefs:
+    - namePattern: "frontend-app"
+      images:
+        - alias: frontend
+          imageName: prakashghorpade2001/memories-notes-app-frontend:1.0.16
+          commonUpdateSettings:
+            updateStrategy: semver
+
+    - namePattern: "backend-app"
+      images:
+        - alias: backend
+          imageName: prakashghorpade2001/memories-notes-app-backend:1.0.16
+          commonUpdateSettings:
+            updateStrategy: semver
