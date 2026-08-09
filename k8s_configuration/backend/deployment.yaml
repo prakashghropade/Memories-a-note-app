@@ -31,7 +31,7 @@ spec:
 
       containers:
       - name: backend
-        image: prakashghorpade2001/memories-notes-app-backend:v1.0.8
+        image: prakashghorpade2001/memories-notes-app-backend:v1.0.15
         ports:
         - containerPort: 3001
  

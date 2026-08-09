@@ -6,7 +6,7 @@ metadata:
 
 data:
   context: |
-    argocdUrl: https://13.206.187.58:30003
+    argocdUrl: https://52.66.202.179:30003
 
   service.email: |
     username: $email-username
