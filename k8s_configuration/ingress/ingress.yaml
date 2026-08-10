@@ -27,3 +27,11 @@ spec:
                 name: fontend-service
                 port:
                   number: 3000
+          
+          - path: /argocd
+            pathType: Prefix
+            backend:
+              service: 
+                name: argocd-server
+                port:
+                  number: 80
