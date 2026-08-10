@@ -10,7 +10,8 @@ spec:
   ingressClassName: nginx
 
   rules:
-    - http:
+    - host: prakashghorpade.shop
+      http:
         paths:
           - path: /api
             pathType: Prefix
