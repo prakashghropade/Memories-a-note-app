@@ -3,19 +3,18 @@ kind: Ingress
 metadata:
   name: memoris-notes--argocd-ingress
   namespace: argocd
-  annotations: 
+  annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
-
   rules:
     - http:
         paths:
           - path: /argocd
             pathType: Prefix
             backend:
-              service: 
+              service:
                 name: argocd-server
                 port:
                   number: 443
