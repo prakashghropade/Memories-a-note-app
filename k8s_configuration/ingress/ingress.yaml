@@ -20,7 +20,7 @@ spec:
                 port:
                   number: 3001
         
-          - path: /web
+          - path: /
             pathType: Prefix
             backend:  
               service:
