@@ -4,7 +4,6 @@ metadata:
   name: memoris-notes-ingress
   namespace: memories-notes-app-namespace
   annotations: 
-     nginx.ingress.kubernetes.io/rewrite-target: /
 
 spec:
   ingressClassName: nginx
