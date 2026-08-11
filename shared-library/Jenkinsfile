@@ -1,0 +1,96 @@
+@Library('memories-shared-library') _
+
+pipeline {
+
+    agent any
+
+    parameters {
+
+        string (
+            name: 'IMAGE_TAG',
+            defaultValue: 'latest',
+            description: "Docker image tag"
+        )
+
+        string (
+            name: 'API_URL',
+            defaultValue: 'http://43.205.116.80:30002/',
+            description: 'Backend API URL for frontend'
+        )
+
+    }
+
+    environment {
+        DOCKERHUB_CREDENTIALS = 'dockerhubcred'
+
+        DOCKHUB_USERNAME = 'prakashghorpade2001'
+
+        BACKEND_IMAGE = "${DOCKERHUB_USERNAME}/memories-notes-app-backend"
+
+        FRONTEND_IMAGE = "${DOCKERHUB_USERNAME}/memories-notes-app-frontend"
+    }
+
+    stages{
+
+        stage('Checkout') {
+            steps{
+                checkout scm
+            }
+        }
+
+        stage('Backend-build'){
+            steps{
+                dir('Memories-a-note-app/backend'){
+
+                    dockerBuildPush(
+                    image: "${BACKEND_IMAGE}",
+                    tag: params.IMAGE_TAG,
+                    credentialsId: "${DOCKERHUB_CREDENTIALS}",
+                    dockerhubfile: 'Dockerfile',
+                )
+
+                }
+             
+            }
+        }
+
+        stage('Frontend-build'){
+
+            steps{
+                dir('Memories-a-note-app/frontend'){
+                    dockerBuildPush(
+                        image: "${FRONTEND_IMAGE}",
+                        tag: params.IMAGE_TAG,
+                        credentialsId: "${DOCKERHUB_CREDENTIALS}",
+                        dockerhubfile: 'Dockerfile',
+                    )
+                }
+            }
+
+        }
+
+    }
+
+    post{
+
+        success{
+            notifyBuild(
+                status: 'SUCCESS',
+                recipient: "prakashghorpade901@gmail.com"
+            )
+        }
+
+        failure: {
+            notifyBuild(
+                status: "FAILURE",
+                recipient: "prakashghorpade901@gmail.com"
+            )
+        }
+
+        always {
+            echo "Build status: ${currentBuild.currentResult}"
+        }
+
+    }
+
+}
