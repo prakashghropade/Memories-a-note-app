@@ -23,7 +23,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhubcred'
 
-        DOCKHUB_USERNAME = 'prakashghorpade2001'
+        DOCKERHUB_USERNAME = 'prakashghorpade2001'
 
         BACKEND_IMAGE = "${DOCKERHUB_USERNAME}/memories-notes-app-backend"
 
