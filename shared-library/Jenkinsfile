@@ -80,7 +80,7 @@ pipeline {
             )
         }
 
-        failure: {
+        failure {
             notifyBuild(
                 status: "FAILURE",
                 recipient: "prakashghorpade901@gmail.com"
