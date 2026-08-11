@@ -40,7 +40,7 @@ pipeline {
 
         stage('Backend-build'){
             steps{
-                dir('backend'){
+                dir('server'){
 
                     dockerBuildPush(
                     image: "${BACKEND_IMAGE}",
