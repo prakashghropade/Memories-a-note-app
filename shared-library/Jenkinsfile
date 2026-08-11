@@ -40,7 +40,7 @@ pipeline {
 
         stage('Backend-build'){
             steps{
-                dir('Memories-a-note-app/backend'){
+                dir('backend'){
 
                     dockerBuildPush(
                     image: "${BACKEND_IMAGE}",
@@ -57,7 +57,7 @@ pipeline {
         stage('Frontend-build'){
 
             steps{
-                dir('Memories-a-note-app/frontend'){
+                dir('frontend'){
                     dockerBuildPush(
                         image: "${FRONTEND_IMAGE}",
                         tag: params.IMAGE_TAG,
