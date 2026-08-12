@@ -20,6 +20,10 @@ import   {
     httpRequestsInProgress
 }  from "./metrics.js"
 
+
+// Create an express app
+const app = express()
+
 // Prometheus middleware
 app.use((req, res, next) => {
 
@@ -57,9 +61,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-// Create an express app
-const app = express()
 
 // Configure express app
 app.use(express.json())
