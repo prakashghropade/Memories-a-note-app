@@ -6,4 +6,4 @@ resources:
   - service.yaml
 images:
   - name: prakashghorpade2001/memories-notes-app-backend
-    newTag: v1.0.49
+    newTag: v1.0.50
