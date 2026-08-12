@@ -13,6 +13,51 @@ import { signup, login, logout, checkAuth } from "./controllers/usersController.
 import CookieParser from "cookie-parser";
 import { requireAuth } from "./middleware/requireAuth.js";
 
+const {
+    client,
+    httpRequestsTotal,
+    httpRequestDuration,
+    httpRequestsInProgress
+} = require('./metrics');
+
+// Prometheus middleware
+app.use((req, res, next) => {
+
+    const start = process.hrtime();
+
+    httpRequestsInProgress.inc();
+
+    res.on('finish', () => {
+
+        const diff = process.hrtime(start);
+
+        const duration =
+            diff[0] + diff[1] / 1e9;
+
+        const route = req.route?.path || req.path;
+
+        httpRequestsTotal.inc({
+            method: req.method,
+            route: route,
+            status_code: res.statusCode
+        });
+
+        httpRequestDuration.observe(
+            {
+                method: req.method,
+                route: route,
+                status_code: res.statusCode
+            },
+            duration
+        );
+
+        httpRequestsInProgress.dec();
+    });
+
+    next();
+});
+
+
 // Create an express app
 const app = express()
 
@@ -43,9 +88,16 @@ app.post('/notes', requireAuth, createNote)
 app.put('/notes/:id', requireAuth, updateNote)
 app.delete('/notes/:id', requireAuth, deleteNote)
 
+
+// metrics
+app.get('/metrics', async (req, res) => {
+    res.set('Content-Type', client.register.contentType);
+
+    res.end(await client.register.metrics());
+});
+
 // Start server
 app.listen(process.env.PORT, "0.0.0.0", () => {
     console.log(`Server Started on ${process.env.PORT}`)
 });
-
 
