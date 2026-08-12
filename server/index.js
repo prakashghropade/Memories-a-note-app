@@ -13,12 +13,12 @@ import { signup, login, logout, checkAuth } from "./controllers/usersController.
 import CookieParser from "cookie-parser";
 import { requireAuth } from "./middleware/requireAuth.js";
 
-const {
+import   {
     client,
     httpRequestsTotal,
     httpRequestDuration,
     httpRequestsInProgress
-} = require('./metrics');
+}  from "./metrics.js"
 
 // Prometheus middleware
 app.use((req, res, next) => {
