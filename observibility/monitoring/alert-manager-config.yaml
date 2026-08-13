@@ -32,6 +32,6 @@ spec:
       authIdentity: "prakashghorpade2001@gmail.com"
       authPassword:
         name: mail-pass
-        value: gmail-pass
+        key: gmail-pass
   - name: 'null'
       
