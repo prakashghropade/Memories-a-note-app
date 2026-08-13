@@ -30,7 +30,7 @@ spec:
       smarthost: smtp.gamil.com:587
       authUsername: "prakashghorpade2001@gmail.com"
       authIdentity: "prakashghorpade2001@gmail.com"
-      authPasssword:
+      authPassword:
         name: mail-pass
         value: gmail-pass
   - name: 'null'
