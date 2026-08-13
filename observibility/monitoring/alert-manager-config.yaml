@@ -21,17 +21,17 @@ spec:
       receiver: 'send-email'
       repeatInterval: 5m
 
-    receivers:
-    - name: 'send-email'
-      emailConfigs:
-      - to: "prakashghorpade901@gmail.com"
-        from: "prakashghorpade2001@gmail.com"
-        sendResolved: false
-        smarthost: smtp.gamil.com:587
-        authUsername: "prakashghorpade2001@gmail.com"
-        authIdentity: "prakashghorpade2001@gmail.com"
-        authPassswrod:
-          name: mail-pass
-          value: gmail-pass
-    - name: 'null'
+  receivers:
+  - name: 'send-email'
+    emailConfigs:
+    - to: "prakashghorpade901@gmail.com"
+      from: "prakashghorpade2001@gmail.com"
+      sendResolved: false
+      smarthost: smtp.gamil.com:587
+      authUsername: "prakashghorpade2001@gmail.com"
+      authIdentity: "prakashghorpade2001@gmail.com"
+      authPassswrod:
+        name: mail-pass
+        value: gmail-pass
+  - name: 'null'
       
