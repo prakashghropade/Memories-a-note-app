@@ -27,7 +27,7 @@ spec:
     - to: "prakashghorpade901@gmail.com"
       from: "prakashghorpade2001@gmail.com"
       sendResolved: false
-      smarthost: smtp.gamil.com:587
+      smarthost: smtp.gmail.com:587
       authUsername: "prakashghorpade2001@gmail.com"
       authIdentity: "prakashghorpade2001@gmail.com"
       authPassword:
