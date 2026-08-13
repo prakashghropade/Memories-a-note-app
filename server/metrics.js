@@ -12,6 +12,8 @@ const httpRequestsTotal = new client.Counter({
   labelNames: ["method", "route", "status_code"],
 });
 
+
+
 // HTTP request duration
 const httpRequestDuration = new client.Histogram({
   name: "memories_app_http_request_duration_seconds",
@@ -19,6 +21,8 @@ const httpRequestDuration = new client.Histogram({
   labelNames: ["method", "route", "status_code"],
   buckets: [0.05, 0.1, 0.25, 0.5, 1, 2, 5],
 });
+
+
 
 // Currently active requests
 const httpRequestsInProgress = new client.Gauge({
