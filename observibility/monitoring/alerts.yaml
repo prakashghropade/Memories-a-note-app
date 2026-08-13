@@ -11,7 +11,7 @@ spec:
   - name: custom.rules
     rules:
     - alert: HighCpuUsage
-      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100 ) > 50
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100 ) > 10
       for: 5m
       labels:
         serverity: warning
