@@ -30,7 +30,7 @@ config:
     [OUTPUT]
         Name            es
         Match           kube.*
-        Host            efk-eck-elasticsearch-es-http.logging.svc
+        Host            Host elasticsearch-es-http.logging.svc
         Port            9200
         TLS             On
         TLS.Verify      Off
