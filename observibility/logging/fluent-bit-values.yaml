@@ -1,0 +1,40 @@
+config:
+  service: |
+    [SERVICE]
+        Daemon       Off
+        Flush        1
+        Log_Level    info
+        Parsers_File /fluent-bit/etc/parsers.conf
+
+  inputs: |
+    [INPUT]
+        Name              tail
+        Path              /var/log/containers/*.log
+        Parser            cri
+        Tag               kube.*
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+        Refresh_Interval  10
+
+  filters: |
+    [FILTER]
+        Name                kubernetes
+        Match               kube.*
+        Kube_Tag_Prefix     kube.var.log.containers.
+        Merge_Log           On
+        Keep_Log            Off
+        K8S-Logging.Parser  On
+        K8S-Logging.Exclude On
+
+  outputs: |
+    [OUTPUT]
+        Name            es
+        Match           kube.*
+        Host            efk-eck-elasticsearch-es-http.logging.svc
+        Port            9200
+        TLS             On
+        TLS.Verify      Off
+        HTTP_User       elastic
+        HTTP_Passwd     hhtmVAeRrgRRUB8RH9kybAhy
+        Logstash_Format On
+        Retry_Limit     False
