@@ -7,7 +7,7 @@ spec:
   ingressClassName: nginx
 
   rules:
-    -  host: Prometheus.prakashghorpade.shop
+    -  host: prometheus.prakashghorpade.shop
        http:
         paths:
         - path: /
