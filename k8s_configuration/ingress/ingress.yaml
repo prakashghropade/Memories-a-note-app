@@ -3,15 +3,15 @@ kind: Ingress
 metadata:
   name: memoris-notes-ingress
   namespace: memories-notes-app-namespace
-  annotations: 
-
+=
 spec:
   ingressClassName: nginx
 
   rules:
-    - http:
+    - host: prakashghorpade.shop
+      http:
         paths:
-          - path: /api
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -19,11 +19,14 @@ spec:
                 port:
                   number: 3001
         
-          - path: /
-            pathType: Prefix
-            backend:  
-              service:
-                name: fontend-service
-                port:
-                  number: 3000
+    - host: api.prakashghorpade.shop
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:  
+            service:
+              name: fontend-service
+              port:
+                number: 3000
           
