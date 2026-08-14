@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: memoris-notes-ingress
   namespace: memories-notes-app-namespace
-=
+
 spec:
   ingressClassName: nginx
 
