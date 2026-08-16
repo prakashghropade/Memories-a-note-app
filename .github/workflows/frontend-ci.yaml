@@ -43,7 +43,7 @@ jobs:
       - name: Push Frontend Image
         run: |
           docker push \
-           --build-arg REACT_APP_API_URL=${{ backend_url }} \
+           --build-arg REACT_APP_API_URL=${{ inputs.backend_url }} \
           ${{ IMAGE_NAME }}
 
 
