@@ -10,7 +10,7 @@ on:
         type: string
       
 env:
-  IMAGE_NAME: prakashghorpade2001/memories-notes-app-frontend:${{ inputs.image_tag }}
+  IMAGE_NAME: prakashghorpade2001/memories-notes-app-backend:${{ inputs.image_tag }}
 
 jobs:
   frontend-build:
@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Build backend Image
-        uses: |
+        run: |
           docker build \
             -t ${{ env.IMAGE_NAME }} .
       
