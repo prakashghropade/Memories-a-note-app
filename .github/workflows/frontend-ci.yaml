@@ -32,6 +32,7 @@ jobs:
       - name: Build frontend Image
         run: |
           docker build \
+              --build-arg REACT_APP_API_URL=${{ inputs.backend_url }} \
           -t ${{ env.IMAGE_NAME }} .
 
       - name: Login to Docker Hub
@@ -43,7 +44,6 @@ jobs:
       - name: Push Frontend Image
         run: |
           docker push \
-           --build-arg REACT_APP_API_URL=${{ inputs.backend_url }} \
           ${{ env.IMAGE_NAME }}
 
 
