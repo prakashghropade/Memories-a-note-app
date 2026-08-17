@@ -73,10 +73,52 @@ resource "aws_eks_node_group" "ondemand-node" {
       "Name" = "${var.cluster-name}-ondemand-nodes"
     }
 
+    disk_size = 20
+
     depends_on = [ aws_eks_cluster.eks ]
 }
 
 
+# nodegroup spot
 resource "aws_eks_node_group" "spot-node" {
+
+    cluster_name = aws_eks_cluster.eks[0].name
+    node_group_name = "${var.cluster-name}-spot-nodes"
+
+    node_role_arn = aws_iam_role.eks-nodegroup-role[0].arn
+
+    scaling_config {
+      desired_size = var.desired_capacity_spot
+      min_size = var.min_capacity_spot
+      max_size = var.max_capacity_spot
+    }
+
+    subnet_ids = [aws_subnet.private-subnet[0].id, aws_subnet.private-subnet[1].id, aws_subnet.private-subnet[2].id]
+
+    instance_types = var.spot_instance_types
+    capacity_type = "SPOT"
+
+    update_config {
+      max_unavailable = 1
+    }
+
+    tags = {
+      "Name" = "${var.cluster-name}-spot-nodes"
+    }
+
+    tags_all = {
+      "kubernetes.io/cluster/${var.clsuter-name}" = "owned"
+      Name = "${var.cluster-name}-ondemand-nodes"
+    }
+
+    labels = {
+      type = "spot"
+      lifycycle = "spot"
+    }
+
+    disk_size = 20
+
+    depends_on = [ aws_eks_cluster.eks ]
   
 }
+

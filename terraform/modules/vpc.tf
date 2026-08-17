@@ -3,7 +3,7 @@ locals {
 }
 
 resource "aws_vpc" "vpc" {
-    cidr_block = var.cider-block
+    cidr_block = var.cidr-block
     instance_tenancy = "default"
     enable_dns_hostnames = true
     enable_dns_support = true
@@ -39,7 +39,7 @@ resource "aws_subnet" "public-subnet" {
 
     tags = {
         Name = "${var.pub-sub-name}-${count.index + 1}"
-        Env  var.env
+        Env  = var.env
         "kubernetes.io/cluster/${local.cluster-name}" = "owned"
         "kubernetes.io/role/elb" = "1"
     }
@@ -168,5 +168,5 @@ resource "aws_nat_gateway" "ngw" {
     }
  }
  
- 
+
   
