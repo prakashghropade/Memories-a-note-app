@@ -33,7 +33,7 @@ jobs:
         run: terraform init
 
       - name: Validate the terraform
-        working-directory: terraform/eks
+        working-directory: terraform
         run: terraform validate
       
       - name: Plan the terraform
