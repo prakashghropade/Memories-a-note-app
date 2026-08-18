@@ -107,7 +107,7 @@ resource "aws_eks_node_group" "spot-node" {
     }
 
     tags_all = {
-      "kubernetes.io/cluster/${var.clsuter-name}" = "owned"
+      "kubernetes.io/cluster/${var.cluster-name}" = "owned"
       Name = "${var.cluster-name}-ondemand-nodes"
     }
 

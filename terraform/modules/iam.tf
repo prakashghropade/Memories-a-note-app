@@ -29,7 +29,7 @@ resource "aws_iam_role" "eks-cluster-role" {
 
 resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
     count = var.is_eks_role_enabled ? 1 : 0
-    policy_arn = "arn:aws:iam:aws:policy/AmazonEKSClusterPolicy"
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
     role = aws_iam_role.eks-cluster-role[count.index].name
 }
 
