@@ -12,7 +12,7 @@ resource "aws_iam_role" "eks-cluster-role" {
     name = "${local.cluster-name}-role-${random_integer.random_suffix.result}"
 
     assume_role_policy = jsonencode({
-        version = "2012-10-17"
+        Version = "2012-10-17"
         Statement = [
               {
         Effect = "Allow"
@@ -37,7 +37,7 @@ resource "aws_iam_role" "eks-nodegroup-role" {
     count = var.is_eks_nodegroup_role_enabled ? 1 : 0
     name = "${local.cluster_name}-nodegroup-role-${random_integer.random_suffix.result}"
 
-     assume_role_policy = jsonencode({
+    assume_role_policy = jsonencode({
     Version = "2012-10-17"
 
     Statement = [{
