@@ -13,7 +13,7 @@ env:
   IMAGE_NAME: prakashghorpade2001/memories-notes-app-backend:${{ inputs.image_tag }}
 
 jobs:
-  frontend-build:
+  backend-build:
     runs-on: ubuntu-latest
 
     defaults:
