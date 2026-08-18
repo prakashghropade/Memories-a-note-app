@@ -66,7 +66,7 @@ jobs:
             Terraform Apply: SUCCESS
       
       - name: Send Failure Email
-        if: failuer()
+        if: failure()
         uses: dawidd6/action-send-mail@v6
         with:
           server_address: smtp.gmail.com
