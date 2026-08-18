@@ -13,7 +13,7 @@ resource "aws_iam_role" "eks-cluster-role" {
 
     assume_role_policy = jsonencode({
         version = "2012-10-17"
-        statement = [
+        Statement = [
               {
         Effect = "Allow"
  
@@ -55,7 +55,7 @@ resource "aws_iam_role" "eks-nodegroup-role" {
 
 resource "aws_iam_role_policy_attachment" "eks-AmazonWorkerNodePolicy" {
     count = var.is_eks_nodegroup_role_enabled ? 1 : 0
-    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolic"
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
     role = aws_iam_role.eks-nodegroup-role[count.index].name
 }
 
