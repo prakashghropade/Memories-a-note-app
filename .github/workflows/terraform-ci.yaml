@@ -40,4 +40,57 @@ jobs:
         working-directory: terraform/eks
         run: terraform plan -var-file="dev.tfvars"
 
+      # - name: Apply the terraform
+      #   working-directory: terraform/eks
+      #   run: terraform apply -var-file=dev.tfvars -auto-approve
+
+      - name: Send Success Email
+        if: success()
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subjects: "Terraform Deployment Successful"
+          to: ${{ secrets.MAIL_TO }}
+          from: Github Actions
+          body: |
+            Terraform deployment completed successfully.
+
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+
+            Terraform Apply: SUCCESS
+      
+      - name: Send Failure Email
+        if: failuer()
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subjects: "Terraform Deployment Failed"
+          to: ${{ secrets.MAIL_TO }}
+          from: Github Actions
+          body: |
+            Terraform deployment has FAILED.
+
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+
+            Terraform Apply: SUCCESS
+            Check the GitHub Actions run: 
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}    
+
+        
+
+
+
+
 
