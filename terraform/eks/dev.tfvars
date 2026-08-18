@@ -19,6 +19,9 @@ eks-sg                = "eks-sg"
 
 # EKS
 is-eks-cluster-enabled     = true
+is_eks_nodegroup_role_enabled = true
+is_eks_role_enabled = true
+
 cluster-version            = "1.33"
 cluster-name               = "eks-cluster"
 endpoint-private-access    = true
