@@ -29,15 +29,15 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Initialize the terraoform
-        working-directory: eks
+        working-directory: terraform/eks
         run: terraform init
 
       - name: Validate the terraform
-        working-directory: eks
+        working-directory: terraform/eks
         run: terraform validate
       
       - name: Plan the terraform
-        working-directory: eks
+        working-directory: terraform/eks
         run: terraform plan -var-file="dev.tfvars"
 
 
