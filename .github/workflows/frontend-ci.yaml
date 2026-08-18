@@ -46,6 +46,49 @@ jobs:
           docker push \
           ${{ env.IMAGE_NAME }}
 
+      - name: Send Success Email
+        if: success()
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "Terraform Deployment Successful"
+          to: ${{ secrets.MAIL_TO }}
+          from: Github Actions
+          body: |
+            Frontend image build and push to dockerhub successfully.
+
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+
+            Frontend Image build and pushed : SUCCESS
+      
+      - name: Send Failure Email
+        if: failure()
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "Terraform Deployment Failed"
+          to: ${{ secrets.MAIL_TO }}
+          from: Github Actions
+          body: |
+            Frontend image build and push to dockerhub has FAILED.
+
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+
+            Frontend Image build and pushed: FAILED
+            Check the GitHub Actions run: 
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}    
 
 
 

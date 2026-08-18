@@ -84,7 +84,7 @@ jobs:
             Branch: ${{ github.ref_name }}
             Commit: ${{ github.sha }}
 
-            Terraform Apply: SUCCESS
+            Terraform Apply: FAILED
             Check the GitHub Actions run: 
             ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}    
 
