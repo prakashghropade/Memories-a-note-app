@@ -10,7 +10,7 @@ module "eks" {
     env = var.env
     cluster-name = "${local.env}-${local.org}-${var.cluster-name}"
     cidr-block = var.cidr-block
-    vpc-name = "${local.env}-${local.org}-${evn.vpc-name}"
+    vpc-name = "${local.env}-${local.org}-${env.vpc-name}"
     igw-name = "${local.env}-${local.org}-${var.igw-name}"
 
     pub-subnet-count = var.pub-subnet-count
@@ -26,10 +26,9 @@ module "eks" {
     public-rt-name = "${local.env}-${local.org}-${var.public-rt-name}"
     private-rt-name = "${local.env}-${local.org}-${var.private-rt-name}"
 
-    eip-name = "${loacl.env}-${local.org}-${var.eip-name}"
+    eip-name = "${local.env}-${local.org}-${var.eip-name}"
     ngw-name = "${local.env}-${local.org}-${var.ngw-name}"
     eks-sg = var.eks-sg
-
 
     is_eks_role_enabled = true
     is_eks_nodegroup_role_enabled = true

@@ -9,7 +9,7 @@ resource "random_integer" "random_suffix" {
 
 resource "aws_iam_role" "eks-cluster-role" {
     count = var.is_eks_role_enabled ? 1 : 0
-    name = "${local.cluster-name}-role-${random_interger.random_suffix.result}"
+    name = "${local.cluster-name}-role-${random_integer.random_suffix.result}"
 
     assume_role_policy = jsondecode({
         version = "2012-10-17"
