@@ -23,7 +23,7 @@ jobs:
           aws-region: "us-east-1"
       
       - name: Check AWS Identity
-        run: sts sts get-caller-identity
+        run: aws sts get-caller-identity
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
