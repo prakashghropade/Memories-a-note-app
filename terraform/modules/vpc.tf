@@ -83,7 +83,7 @@ resource "aws_route_table" "pubic-rt" {
   
 }
 
-resource "aws_route_table_association" "public-rta   " {
+resource "aws_route_table_association" "public-rta" {
     count = 3
     route_table_id = aws_route_table.pubic-rt.id
     subnet_id = aws_subnet.public-subnet[count.index].id
