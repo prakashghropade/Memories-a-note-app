@@ -7,11 +7,13 @@ import { config } from "dotenv";
 // Import dependencies
 import express from "express";
 import cors from "cors"
+import crypto from "crypto";
 import connectToDb from "./config/connectToDb.js";
 import { createNote, fetchNote, fetchNotes, updateNote, deleteNote } from "./controllers/notesController.js";
 import { signup, login, logout, checkAuth } from "./controllers/usersController.js";
 import CookieParser from "cookie-parser";
 import { requireAuth } from "./middleware/requireAuth.js";
+import logger from "./helpers/logger.js";
 
 import   {
     client,
@@ -28,6 +30,8 @@ const app = express()
 app.use((req, res, next) => {
 
     const start = process.hrtime();
+    const requestId = crypto.randomUUID();
+    req.requestId = requestId;
 
     httpRequestsInProgress.inc();
 
@@ -39,6 +43,16 @@ app.use((req, res, next) => {
             diff[0] + diff[1] / 1e9;
 
         const route = req.route?.path || req.path;
+
+        logger.info("http_request_completed", {
+            requestId,
+            method: req.method,
+            path: req.path,
+            route,
+            statusCode: res.statusCode,
+            durationMs: Math.round(duration * 1000),
+            userAgent: req.get("user-agent"),
+        });
 
         httpRequestsTotal.inc({
             method: req.method,
@@ -99,6 +113,9 @@ app.get('/metrics', async (req, res) => {
 
 // Start server
 app.listen(process.env.PORT, "0.0.0.0", () => {
-    console.log(`Server Started on ${process.env.PORT}`)
+    logger.info("server_started", {
+        port: process.env.PORT,
+        environment: process.env.NODE_ENV || "development",
+    });
 });
 

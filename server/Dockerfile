@@ -18,4 +18,4 @@ COPY --from=build /app .
 
 EXPOSE 3001
 
-CMD ["node", "index.js"]
+CMD ["node", "--import", "./instrumentation.js", "index.js"]
