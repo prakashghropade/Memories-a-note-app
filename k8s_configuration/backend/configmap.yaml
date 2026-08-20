@@ -9,3 +9,4 @@ data:
   SECRET: aw94jr4fy45fa64waf54h5
   EMAIL_USER: prakashghorpade2001@gmail.com
   EMAIL_PASS: yhwgniyorcvitpmp
+  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://jaeger.tracing.svc.cluster.local:4318/v1/traces
