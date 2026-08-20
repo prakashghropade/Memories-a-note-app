@@ -9,7 +9,7 @@ spec:
   rules:
     - host: kibana.prakashghorpade.shop
       http:
-        path:
+        paths:
           - path: /
             pathType: Prefix
             backend:
