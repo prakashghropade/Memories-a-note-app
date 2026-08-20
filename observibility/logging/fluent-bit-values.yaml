@@ -364,7 +364,7 @@ networkPolicy:
 luaScripts:
   setIndex.lua: |
     function set_index(tag, timestamp, record)
-        index = "abhishek-"
+        index = "prakash-"
         if record["kubernetes"] ~= nil then
             if record["kubernetes"]["namespace_name"] == "logging" then
                 return -1, timestamp, record  -- Skip logs from the logging namespace
@@ -440,7 +440,7 @@ config:
         Host elasticsearch-master
         Port 9200
         HTTP_User elastic
-        HTTP_Passwd of4OOmvsnXmEjXc9
+        HTTP_Passwd IWmkQsP1YzqRFvO5
         tls On
         tls.verify Off
         Logstash_Format On
@@ -455,7 +455,7 @@ config:
         Host elasticsearch-master
         Port 9200
         HTTP_User elastic
-        HTTP_Passwd of4OOmvsnXmEjXc9
+        HTTP_Passwd IWmkQsP1YzqRFvO5
         tls On
         tls.verify Off
         Logstash_Format On
