@@ -6,14 +6,14 @@ metadata:
 spec:
   ingressClassName: nginx
 
-rules:
-  - host: kibana.prakashghorpade.shop
-    http:
-      path:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: kibana-kibana
-              port:
-                number: 5601
+  rules:
+    - host: kibana.prakashghorpade.shop
+      http:
+        path:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana-kibana
+                port:
+                  number: 5601
