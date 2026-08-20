@@ -5,7 +5,7 @@ import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-proto";
 const traceExporter = new OTLPTraceExporter({
   url:
     process.env.OTEL_EXPORTER_OTLP_TRACES_ENDPOINT ||
-    "http://localhost:4318/v1/traces",
+    "http://jaeger.tracing.svc.cluster.local:4318/v1/traces",
 });
 
 const sdk = new NodeSDK({
