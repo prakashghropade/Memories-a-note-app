@@ -313,8 +313,3 @@ Defined in [.github/workflows](file:///C:/Prakash/Projects/Memories-a-note-app/.
 - [frontend-ci.yaml](file:///C:/Prakash/Projects/Memories-a-note-app/.github/workflows/frontend-ci.yaml): Lints, tests, and builds Frontend React image.
 - [terraform-ci.yaml](file:///C:/Prakash/Projects/Memories-a-note-app/.github/workflows/terraform-ci.yaml): Validates configuration parameters and executes `terraform plan`.
 
----
-
-## License
-
-This project is licensed under the MIT License.
