@@ -92,6 +92,11 @@ connectToDb()
 app.get('/', (req, res) => {
     res.json("hello")
 })
+
+app.get('/healthy', (req, res) => {
+    res.json("hello healthy")
+})
+
 app.post('/signup', signup)
 app.post('/login', login)
 app.get('/logout', logout)
