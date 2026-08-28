@@ -7,6 +7,6 @@ resources:
   - canary-service.yaml
 images:
   - name: prakashghorpade2001/memories-notes-app-backend
-    newTag: v1.0.73
+    newTag: v1.0.74
 
 
