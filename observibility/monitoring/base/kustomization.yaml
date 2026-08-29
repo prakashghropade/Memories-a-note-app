@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - email-secrets.yaml
   - alert-manager-config.yaml
-  - alets.yaml
+  - alerts.yaml
   - serviceMonitor.yaml
   - ingress-nginx.yaml
