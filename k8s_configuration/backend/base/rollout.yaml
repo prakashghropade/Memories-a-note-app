@@ -1,0 +1,115 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+
+metadata:
+  name: backend-rollout
+  namespace: memories-notes-app-namespace
+  labels:
+    app: backend
+
+spec:
+  replicas: 4
+
+  revisionHistoryLimit: 3
+
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+
+      initContainers:
+        - name: wait-for-mongodb
+          image: mongo:8.0.4
+          command:
+            - sh
+            - -c
+            - |
+              until mongosh "mongodb://admin:admin123@mongodb-service:27017/admin" --authenticationDatabase admin --eval 'db.adminCommand("ping")' --quiet; do
+                echo "Waiting for MongoDB..."
+                sleep 5
+              done
+              echo "MongoDB is ready"
+
+      containers:
+        - name: backend
+          image: prakashghorpade2001/memories-notes-app-backend:v1.0.71
+
+          ports:
+            - containerPort: 3001
+
+          envFrom:
+            - configMapRef:
+                name: backend-config
+
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+  strategy:
+    canary:
+
+      stableService: backend-stable-service
+
+      canaryService: backend-canary-service
+
+      trafficRouting:
+        alb:
+          ingress: memories-notes-ingress-backend
+          servicePort: 3001
+
+      steps:
+      
+        - setWeight: 10
+        - pause:
+            duration: 10m
+
+        - setWeight: 25
+        - pause:
+            duration: 10m
+
+        - setWeight: 50
+        - pause:
+            duration: 10m
+
+        - setWeight: 75
+        - pause:
+            duration: 10m
+
+        - setWeight: 100

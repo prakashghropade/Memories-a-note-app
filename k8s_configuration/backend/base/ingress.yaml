@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: memories-notes-ingress-backend
+  namespace: memories-notes-app-namespace
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+    - host: api.prakashghorpade.shop
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-stable-service
+                port:
+                  number: 3001
+          

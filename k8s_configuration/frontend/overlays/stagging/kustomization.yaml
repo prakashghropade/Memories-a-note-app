@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: memories-notes-stag
+
+resources:
+  - ../../base
+
+images:
+  - name: prakashghorpade2001/memories-notes-app-frontend
+    newName: prakashghorpade2001/memories-notes-app-frontend
+    newTag: v1.0.74
+
+patches:
+  - path: frontend-patch.yaml
+
+  - target:
+      kind: Ingress
+      name: memories-notes-ingress-frontend
+    path: ingress-patch.yaml

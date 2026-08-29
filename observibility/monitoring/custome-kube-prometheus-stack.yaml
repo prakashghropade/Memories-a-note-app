@@ -10,4 +10,5 @@ alertmanager:
     replicas: 2
 
     alertmanagerConfigMatcherStrategy:
-      type: None
+      type: None 
+      

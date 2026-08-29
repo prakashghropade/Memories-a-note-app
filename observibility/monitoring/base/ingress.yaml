@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monitoring-ingress
+  namespace: monitoring
+spec:
+  ingressClassName: nginx
+
+  rules:
+    -  host: prometheus.prakashghorpade.shop
+       http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: prometheus-operated
+              port: 
+                number: 9090
+    - host: graphana.prakashghorpade.shop
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: monitoring-grafana
+              port: 
+                number: 80
+    - host: alert.prakashghorpade.shop
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: monitoring-kube-prometheus-alertmanager  
+              port:
+                number: 9093
