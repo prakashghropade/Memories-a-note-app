@@ -3,7 +3,6 @@ kind: Rollout
 
 metadata:
   name: frontend-rollout
-  namespace: memories-notes-app-namespace
   labels:
     app: frontend
 spec:
