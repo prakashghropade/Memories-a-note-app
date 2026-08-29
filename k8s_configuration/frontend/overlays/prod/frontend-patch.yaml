@@ -2,5 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: frontend-rollout
+  labels:
+    app: frontend
 spec:
   replicas: 4
+  

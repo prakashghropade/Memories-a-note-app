@@ -9,7 +9,7 @@ resources:
 images:
   - name: prakashghorpade2001/memories-notes-app-frontend
     newName: prakashghorpade2001/memories-notes-app-frontend
-    newTag: v1.0.74
+    newTag: v1.0.70
 
 patches:
   - path: frontend-patch.yaml
