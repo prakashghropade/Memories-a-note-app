@@ -1,7 +1,7 @@
 apiVersion:  argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-app
+  name: argocd-dev-application-app
   namespace: argocd
   annotations:
     notifications.argoproj.io/subscribe.on-health-degraded.email: "prakashghorpade901@gmail.com"
