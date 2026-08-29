@@ -5,4 +5,4 @@ resources:
   - alert-manager-config.yaml
   - alerts.yaml
   - serviceMonitor.yaml
-  - ingress-nginx.yaml
+  - ingress.yaml
