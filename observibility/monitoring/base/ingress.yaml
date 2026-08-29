@@ -17,7 +17,7 @@ spec:
               name: prometheus-operated
               port: 
                 number: 9090
-    - host: graphana.prakashghorpade.shop
+    - host: grafana.prakashghorpade.shop
       http:
         paths:
         - path: /
