@@ -1,3 +1,3 @@
 - op: replace
   path: /spec/rules/0/host
-  value: dev.api.prakashghorpade.shop
+  value: api.prakashghorpade.shop
