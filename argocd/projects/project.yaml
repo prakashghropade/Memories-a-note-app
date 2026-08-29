@@ -12,6 +12,18 @@ spec:
       server: https://kubernetes.default.svc
     - namespace: argocd
       server: https://kubernetes.default.svc
+    - namespace: logging
+      server: https://kubernetes.default.svc
+    - namespace: monitoring
+      server: https://kubernetes.default.svc
+    - namespace: tracing
+      server: https://kubernetes.default.svc
+    - namespace: memories-notes-dev
+      server: https://kubernetes.default.svc
+    - namespace: memories-notes-prod
+      server: https://kubernetes.default.svc
+    - namespace: memories-notes-stag
+      server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
