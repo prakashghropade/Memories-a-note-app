@@ -2,7 +2,6 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: mongodb-pv
-  namespace: memories-notes-app-namespace
   annotations: 
     argocd.argoproj.io/sync-wave: "0"
 spec:

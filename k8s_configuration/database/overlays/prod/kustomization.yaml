@@ -6,6 +6,9 @@ namespace: memories-notes-prod
 resources:
   - ../../base
 
+patches:
+  - path: pv-patch.yaml
+
 images:
   - name: mongo
     newName: mongo
