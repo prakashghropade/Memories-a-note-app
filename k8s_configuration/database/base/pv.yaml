@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   capacity:
-    storage: 3Gi
+    storage: 1Gi
   
   accessModes:
     - ReadWriteOnce
