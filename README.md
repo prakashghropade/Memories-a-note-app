@@ -1,5 +1,7 @@
 # Memories Notes App <img src="./frontend/public/logo192.png" width="30" height="30">
 
+![Whole App Delivery & Observability Architecture](./architecture-diagrams/memoreis_app_600.drawio.png)
+
 A production-ready, full-stack web application built with the MERN stack (MongoDB, Express, React, Node.js) and engineered with modern DevOps practices. This repository demonstrates end-to-end cloud infrastructure provisioning, containerized multi-stage pipelines (CI/CD), GitOps continuous delivery, and full-stack observability.
 
 Live Preview: [Click here to preview](https://memories-note-app.vercel.app/)
@@ -50,8 +52,6 @@ The system deploys a secure, scalable, and isolated network topology on AWS usin
 ### 2. Application Delivery & Observability Architecture
 
 This diagram details the full CI/CD delivery lifecycle, GitOps synchronization, and the observability stack.
-
-![Whole App Delivery & Observability Architecture](./architecture-diagrams/memoreis_app_600.drawio.png)
 
 #### Operational Workflow:
 1. **Continuous Integration (CI)**:
