@@ -5,4 +5,4 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  volumeName: mongodb-pv-prod
+  volumeName: mongodb-pv
