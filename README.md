@@ -12,6 +12,7 @@ Live Preview: [Click here to preview](https://memories-note-app.vercel.app/)
 1. [Architecture Overview](#architecture-overview)
    - [AWS Cloud Infrastructure (Terraform)](#1-aws-cloud-infrastructure-terraform)
    - [Application Delivery & Observability Architecture](#2-application-delivery--observability-architecture)
+   - [Platform & Observability Screenshots](#3-platform--observability-screenshots)
 2. [Project Folder Structure](#project-folder-structure)
 3. [Component Breakdown](#component-breakdown)
 4. [Tech Stack & Technologies](#tech-stack--technologies)
@@ -71,6 +72,58 @@ This diagram details the full CI/CD delivery lifecycle, GitOps synchronization, 
    - **Logging**: Fluent-Bit parses and aggregates application logs, sending them to Elasticsearch/Grafana Loki.
    - **Tracing**: Node.js auto-instrumentation via OpenTelemetry exports distributed traces to a Jaeger instance in the `tracing` namespace.
 
+### 3. Platform & Observability Screenshots
+
+#### Prometheus Metrics
+Prometheus queries show node CPU usage and container CPU usage across the cluster.
+
+![Prometheus metrics queries](./architecture-diagrams/Prometheus.jpeg)
+
+#### AWS Certificate Manager (ACM)
+ACM shows the validated TLS certificates used by the application and its services.
+
+![AWS Certificate Manager certificates](./architecture-diagrams/acm.jpeg)
+
+#### Argo CD Applications
+The Argo CD applications view shows the health and synchronization status of deployed services.
+
+![Argo CD applications overview](./architecture-diagrams/argocd.jpeg)
+
+#### Argo CD App-of-Apps
+The Argo CD application tree shows the parent application managing the backend, database, and frontend.
+
+![Argo CD app-of-apps hierarchy](./architecture-diagrams/argocd_1.jpeg)
+
+#### Amazon EKS Cluster Overview
+The EKS cluster overview displays cluster status, Kubernetes version, and health information.
+
+![Amazon EKS cluster overview](./architecture-diagrams/eks-1.jpeg)
+
+#### Amazon EKS Cluster Resources
+The EKS cluster resources view summarizes configured capacity and cluster settings.
+
+![Amazon EKS cluster resources](./architecture-diagrams/eks.jpeg)
+
+#### Grafana Node Exporter: Disk and Network
+This Grafana dashboard visualizes node disk activity, disk usage, and network traffic.
+
+![Grafana disk and network metrics](./architecture-diagrams/grafana%20%282%29.jpeg)
+
+#### Grafana Node Exporter: CPU and Memory
+This Grafana dashboard tracks node CPU load and memory utilization.
+
+![Grafana CPU and memory metrics](./architecture-diagrams/grafana.jpeg)
+
+#### Grafana Kubernetes Compute Resources
+This dashboard presents Kubernetes node and pod CPU and memory resource usage.
+
+![Grafana Kubernetes compute resources](./architecture-diagrams/grafna.jpeg)
+
+#### Amazon Route 53 DNS Records
+The Route 53 hosted zone contains DNS records that route traffic to the application services.
+
+![Amazon Route 53 DNS records](./architecture-diagrams/route%2053.jpeg)
+
 ---
 
 ## Project Folder Structure
@@ -84,9 +137,19 @@ Memories-a-note-app/
 │       ├── backend-ci.yaml        # CI workflow for the Backend Node.js API
 │       ├── frontend-ci.yaml       # CI workflow for the Frontend React App
 │       └── terraform-ci.yaml      # Lint, plan, and validate Terraform code
-├── architecture-diagrams/         # Architecture diagrams
+├── architecture-diagrams/         # Architecture diagrams and platform screenshots
+│   ├── Prometheus.jpeg             # Prometheus metrics queries
+│   ├── acm.jpeg                    # AWS Certificate Manager certificates
+│   ├── argocd.jpeg                 # Argo CD applications overview
+│   ├── argocd_1.jpeg               # Argo CD app-of-apps hierarchy
+│   ├── eks-1.jpeg                  # Amazon EKS cluster overview
+│   ├── eks.jpeg                    # Amazon EKS cluster resources
+│   ├── grafana (2).jpeg            # Grafana disk and network metrics
+│   ├── grafana.jpeg                # Grafana CPU and memory metrics
+│   ├── grafna.jpeg                 # Grafana Kubernetes compute resources
 │   ├── memoreis_app_600.drawio.png # Full App & GitOps delivery flow
-│   └── memories-notes-app-aws-architecture-terraform.png # IaC AWS VPC/EKS layout
+│   ├── memories-notes-app-aws-architecture-terraform.png # IaC AWS VPC/EKS layout
+│   └── route 53.jpeg               # Amazon Route 53 DNS records
 ├── argocd/                        # GitOps / ArgoCD application configurations
 │   ├── app_of_apps/               # Parent app-of-apps pattern definition
 │   │   └── app-of-apps.yaml
@@ -312,4 +375,3 @@ Defined in [.github/workflows](file:///C:/Prakash/Projects/Memories-a-note-app/.
 - [backend-ci.yaml](file:///C:/Prakash/Projects/Memories-a-note-app/.github/workflows/backend-ci.yaml): Lints, tests, and builds Backend image.
 - [frontend-ci.yaml](file:///C:/Prakash/Projects/Memories-a-note-app/.github/workflows/frontend-ci.yaml): Lints, tests, and builds Frontend React image.
 - [terraform-ci.yaml](file:///C:/Prakash/Projects/Memories-a-note-app/.github/workflows/terraform-ci.yaml): Validates configuration parameters and executes `terraform plan`.
-
