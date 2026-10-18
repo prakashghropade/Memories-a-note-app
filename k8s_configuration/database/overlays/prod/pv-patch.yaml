@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: mongodb-pv
   annotations: 
-  argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   capacity:
     storage: 1Gi
